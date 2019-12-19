@@ -3,7 +3,7 @@
 Необходимо выполнить следующие задания:
 
 Теоретическая часть:
-- Ответить на вопросы - https://docs.google.com/forms/d/e/1FAIpQLSfok1RQ1Ig_BAP-nDYu5B7BJY75xPG32dlYfBA-DyPhlcqiaA/viewform?usp=pp_url
+- Ответить на вопросы - http://tiny.cc/t1nuhz
 
 Практическая часть:
 - Ознакомиться с тестами, которые находятся в папке feature
