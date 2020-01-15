@@ -49,6 +49,6 @@ end
 browser_setup('chrome')
 
 configuration = YAML.load_file 'configuration/default.yml'
-$rest_wrap = RestWrapper.new url: 'http://testing4qa.ediweb.ru/api',
+$rest_wrap = RestWrapper.new url: 'https://testing4qa.ediweb.ru/api',
                              **configuration[:credentials]
 logger_initialize
