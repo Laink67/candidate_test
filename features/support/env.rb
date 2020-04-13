@@ -12,22 +12,23 @@ def browser_setup(browser = 'firefox')
   case browser
   when 'chrome'
     Capybara.register_driver :chrome do |app|
-      Selenium::WebDriver::Chrome.driver_path = 'configuration/chromedriver'
+      Selenium::WebDriver::Chrome::Service.driver_path = 'configuration/chromedriver'
       profile = Selenium::WebDriver::Chrome::Profile.new
       profile['profile.default_content_settings.popups'] = 0 # custom location
       profile['browser.helperApps.neverAsk.saveToDisk'] = 'application/octet-stream, text/xml'
       profile['pdfjs.disabled'] = true
       Capybara::Selenium::Driver.new(app, browser: :chrome,
-                                          desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
-                                            'chromeOptions' => {
-                                              'args' => ['--window-size=1920,1080'],
-                                              'prefs' => {
-                                                'download.default_directory' => Dir.pwd + '/features/tmp/',
-                                                'download.prompt_for_download' => false,
-                                                'plugins.plugins_disabled' => ['Chrome PDF Viewer']
-                                              }
-                                            }
-                                          ))
+                                     desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
+                                         'chromeOptions' => {
+                                             'args' => ['--window-size=1920,1080'],
+                                             'prefs' => {
+                                                 'download.default_directory' => Dir.pwd + '/features/tmp/',
+                                                 'download.prompt_for_download' => false,
+                                                 'download.directory_upgrade' => true,
+                                                 'plugins.plugins_disabled' => ['Chrome PDF Viewer']
+                                             }
+                                         }
+                                     ))
     end
     Capybara.default_driver = :chrome
     Capybara.page.driver.browser.manage.window.maximize
@@ -46,6 +47,7 @@ def browser_setup(browser = 'firefox')
     Capybara.default_driver = :firefox_driver
   end
 end
+
 browser_setup('chrome')
 
 configuration = YAML.load_file 'configuration/default.yml'

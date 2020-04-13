@@ -15,7 +15,7 @@ class RestWrapper
                                            user: login,
                                            password: password,
                                            accept: 'application/json',
-                                           headers: { content_type: 'application/json' }
+                                           headers: {content_type: 'application/json'}
     JSON.parse(response)
   rescue StandardError => e
     send_error e
@@ -27,7 +27,7 @@ class RestWrapper
                                            user: login,
                                            password: password,
                                            payload: params.to_json,
-                                           headers: { content_type: 'application/json' }
+                                           headers: {content_type: 'application/json'}
     JSON.parse(response)
   rescue StandardError => e
     send_error e
@@ -39,7 +39,7 @@ class RestWrapper
                                            user: login,
                                            password: password,
                                            payload: params.to_json,
-                                           headers: { content_type: 'application/json' }
+                                           headers: {content_type: 'application/json'}
     JSON.parse(response)
   rescue StandardError => e
     send_error e
@@ -51,7 +51,7 @@ class RestWrapper
                                            user: login,
                                            password: password,
                                            payload: params.to_json,
-                                           headers: { content_type: 'application/json' }
+                                           headers: {content_type: 'application/json'}
     JSON.parse(response)
   rescue StandardError => e
     send_error e

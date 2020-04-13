@@ -6,22 +6,26 @@ When(/^захожу на страницу "(.+?)"$/) do |url|
   sleep 1
 end
 
-When(/^ввожу в поисковой строке текст "([^"]*)"$/) do |text|
-  query = find("//input[@name='q']")
-  query.set(text)
-  query.native.send_keys(:enter)
-  $logger.info('Поисковый запрос отправлен')
+When(/^перехожу на вкладку Скачать/) do
+  find(:xpath, '/html/body/div[1]/div/div[1]/a[2]').click
+  $logger.info("Переход на вкладку Скачать")
+  sleep 1
+end
+When(/^скачиваю последний стабильный релиз/) do
+  get_a.click
+  $logger.info("Скачивание последнего стабильного релиза осуществлено")
+  sleep 20
+end
+
+When(/^проверяю наличие файла в директории$/) do
+  any_downloads = downloaded?
+  $logger.info(any_downloads ? "Файл в находится нужной директории" : "Файл в нужной директории отсутствует")
   sleep 1
 end
 
-When(/^кликаю по строке выдачи с адресом (.+?)$/) do |url|
-  link_first = find("//a[@href='#{url}/']/h3")
-  link_first.click
-  $logger.info("Переход на страницу #{url} осуществлен")
-  sleep 1
-end
-
-When(/^я должен увидеть текст на странице "([^"]*)"$/) do |text_page|
-  sleep 1
-  expect(page).to have_text text_page
+When(/^проверяю имя скачанного файла$/) do
+  name_installer = get_a_href.split('/').last
+  $logger.info(check_name(name_installer) ?
+                   "Имя скачанного файла и файла-установщика совпадают: #{name_installer}" :
+                   "Проверка не пройдена")
 end
